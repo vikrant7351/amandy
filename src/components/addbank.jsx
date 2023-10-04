@@ -26,29 +26,27 @@ const BankDetailsForm = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
 
-
-    try {
-      const response = Axios.post('http://localhost:4000/api/addBank', formdata, {
-        headers: {
-          'Content-type': 'application/json',
+    try{
+      const response = await Axios.post('http://localhost:4000/api/addBanks', formdata,{
+        Headers:{
+          'Content-type':'application/json',
         },
       });
+      console.log(typeof(response.status));
 
-      if(response.status === 200){
-        toast.success('add bank sucessfully');
-      } else {
-        console.error('bank registion failed');
+      if(response.status ===200){
+        toast.success('add account sucessfully');
+      }else{
+        toast.error('account falied');
       }
-    } catch (error) {
-      console.error(error);
-      toast.error('an error occured');
-    }
+
+    }catch (error){
+    console.error(error);
+    toast.error('an error occured');
+
   }
-
-
-
-
-
+}
+  
   return (
     <div className="page-containers">
       <ToastContainer />

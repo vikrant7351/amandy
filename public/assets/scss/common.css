@@ -1,0 +1,113 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Yeh viewport ki height ke hisab se center me rakhega */
+  }
+  
+  .circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Circular shape ke liye */
+    overflow: hidden; /* Image ke bahar ka hissa hide kar dega */
+  }
+  
+  .logo img {
+    max-width: 100%; /* Image ko div ke width ke hisab se scale karega */
+    height: auto; /* Aspect ratio maintain karega */
+    background-color: #ffff;
+  }
+  .fixed{
+    margin-top:90px ;
+  }
+
+
+
+
+
+
+/* SupportTicketForm.css */
+/* .page-container{
+   margin-top: 110px;
+} */
+
+.page-containers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 110px;
+  overflow-y: auto; 
+  height: 100vh; 
+ 
+ 
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 110px;
+
+ 
+ 
+}
+
+.support-ticket-form {
+ 
+  max-width: 400px;
+  margin: 0 auto;
+  /* margin-top: 110px;
+  margin-left: 500px; */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.support-ticket-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
