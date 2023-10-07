@@ -3,7 +3,7 @@
  import { ToastContainer } from 'react-toastify';
  import 'react-toastify/dist/ReactToastify.css';
  import { toast } from 'react-toastify';
-  import {  Link,useLocation } from 'react-router-dom';
+  import {  Link } from 'react-router-dom';
   // import logo from './assets/img/logo.png';
  import Web3 from 'web3';
 
@@ -36,6 +36,7 @@
 
 
    const metamask = async () => {
+    
      try {
        const response = await fetch('http://localhost:4000/api/check-referral', {
          method: 'post',

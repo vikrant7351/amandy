@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import axios from 'axios';
 // import { error } from 'jquery';
 import React, { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
@@ -29,31 +29,36 @@ const UserForm = () => {
   // Yahan, setformdata function ke andar, existing formdata object ka spread kiya gaya hai. Iska matlab hai ki jab bhi koi input field change hota hai (onChange event ke through), tab handleInputChange function call hota hai, aur isme name aur value variables se input field ka naam (name) aur uska value (value) extract kiye jaate hain. Fir, setformdata function ka istemal kia jata hai, jiske andar ...formdata ki madad se existing formdata object ka copy banaya jata hai. Lekin, ...formdata ke sath ek new property [name]: value add ki jati hai, jisse ki specific input field ka value update ho jata hai. Yani ke, spread operator ...formdata se ek naya object banaya jata hai, jismein ek specific property ([name]) ka value (value) change ho jata hai.
   
   // Iska matlab hai ki jab aap kisi input field mein kuch type karte hain, to formdata object mein sirf woh field ka value change hota hai jo aapne modify kiya hai, baaki sab properties waise hi rehti hain. Spread operator ki madad se aap object ka shallow copy create karte hain aur usmein specific changes karte hain, bina puri object ko dubara se likhna padta hai. Isse code ko concise banaya jata hai aur code maintainability improve hoti hai.
-  const handlesubmit = async(e) => {
-    e.preventDefault();    // yeh ak defeault func h jo user kay data ko seachbar may show hone say prevent karta h n
-   
-    try{
-      const response = await Axios.post('http://localhost:4000/api/userRegister', formdata,{
-        Headers:{
-          'Content-type':'application/json',
-        },
+
+  
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    console.log(formdata);
+    let jwtToken = localStorage.getItem('userAccessToken');
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://localhost:4000/api/userRegister',
+      headers: {
+        'Authorization': `Bearer ${jwtToken}`
+      },
+      data: formdata
+    };
+
+    await axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        if (response.status === 200) {
+          toast.success('request submit ');
+        } else {
+          console.error('request  not insert');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      console.log(typeof(response.status));
-
-      if(response.status ===200){
-
-        
-        toast.success('user register sucessfully ');
-      }else{
-        console.error('user  not registert');
-      }
-
-    }catch (error){
-    console.error(error);
-    toast.error('an error occured');
-
   }
-}
+
 
   return (
     <div className="page-containers">

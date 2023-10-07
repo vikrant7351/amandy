@@ -1,38 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 // import logo from './assets/img/user4.jpg';
-
+import { useUser } from "./UserContext";
 
 const Home = () => {
-    const [userId,setUserId] = useState("");
-    const [contractAddress,setContractAddress] = useState("");
+    const [userData] = useUser();
+  const { userId } = userData;
 
-useEffect(() =>{
-    fetchUserFromServer();
-},[]);
-
-
-const fetchUserFromServer = async () => {
-    try {
-        // Make a GET request to your Express server endpoint to fetch the user ID
-        const response = await fetch("http://localhost:4000/api/user-data", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        if (response.ok) {
-            // If the request is successful, parse the response and set the user ID in the state
-            const data = await response.json();
-            setUserId(data.userId);
-            setContractAddress(data.contractAddress);
-        } else {
-            console.error("Failed to fetch user ID");
-        }
-    } catch (error) {
-        console.error("Error fetching user ID:", error);
-    }
-};
 
     return (
         <body class="body-scroll theme-indigo" data-page="index">
@@ -134,8 +107,8 @@ const fetchUserFromServer = async () => {
                         <div class="col-12 overflow-hidden text-center mb-4">
                             <h1 class="display-4 mb-0">$ 1,63456.00</h1>
                             <p class="text-secondary">Total Balance</p>
-                            <p class="text-secondary">UserId:{userId}</p>
-                            <p class="text-secondary">Address:{contractAddress}</p>
+                            <p class="text-secondary">UserId:{userData.userId}</p>
+                            <p class="text-secondary">Address:{userData.contractAddress}</p>
 
                         </div>
                         <div class="col-6 text-end">
