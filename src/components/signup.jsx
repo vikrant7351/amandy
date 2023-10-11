@@ -6,6 +6,7 @@
   import {  Link } from 'react-router-dom';
   // import logo from './assets/img/logo.png';
  import Web3 from 'web3';
+import axios from 'axios';
 
 
 
@@ -36,7 +37,7 @@
 
 
    const metamask = async () => {
-    
+
      try {
        const response = await fetch('http://localhost:4000/api/check-referral', {
          method: 'post',
@@ -57,6 +58,7 @@
            const networkId = await web3.eth.getChainId();
 
            if(networkId === 1n){
+
        
            const serverResponse = await fetch('http://localhost:4000/api/store-address', {
            method: 'POST',
@@ -96,8 +98,6 @@
      }
    };
    
- 
-
    return (
     
     <div className="wrapper d-flex flex-column h-100">

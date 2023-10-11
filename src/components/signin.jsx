@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import Web3 from 'web3';
 import Axios from 'axios';
-import api from './api'; // Import the axios helper for API requests
+
 // import logo from './assets/img/logo.png';
 const SignInForm = () => {
   const [message, setMessage] = useState('');

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
+
 const UserContext = createContext();
 
 export function useUser() {
@@ -21,42 +22,28 @@ export function UserProvider({ children }) {
 
   const fetchUserFromServer = async () => {
 
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: 'http://localhost:4000/api/userdata',
+      headers: {
+        'Authorization': `Bearer ${jwtToken}`,
+      }, 
+    };
 
-    try {
-      const response = await axios.get("http://localhost:4000/api/userdata");
-      if (response.status === 200) {
-        setUserData(response.data); // Set the user data in the state
-      } else {
-        console.error("Request not successful");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    const response = await axios.request(config)
+      .then(async (response) => {
+        console.log(JSON.stringify(response.data));
+        if (response.status === 200) {
+          setUserData(response.data);
 
-  //   let config = {
-  //     method: "Get",
-  //     maxBodyLength: Infinity,
-  //     url: 'http://localhost:4000/api/userdata',
-  //     headers: {
-  //       // 'Authorization': `Bearer ${jwtToken}`
-  //     },
-  //   };
-
-  //       await axios.request(config)
-  //     .then(async (response) => {
-  //       console.log(JSON.stringify(response.data));
-  //       let  userData = response.data;
-
-  //       if (response.status === 200) {
-  //         const data = await response.json();
-  //         setUserData(data);
-  //       } else {
-  //         console.error('request  not insert');
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
+        } else {
+          console.error('request  not insert');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
   };
 
